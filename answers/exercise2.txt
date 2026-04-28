@@ -1,0 +1,14 @@
+docker run -it ubuntu bash
+mkdir /usr/src/app
+touch /usr/src/app/index.js
+ls /usr/src/app/
+exit
+
+peter@arigna:~/work/full-stack-open-containers/answers$ docker run -it ubuntu bash
+root@3380bc16bb9b:/# mkdir /usr/src/app
+root@3380bc16bb9b:/# touch /usr/src/app/index.js
+root@3380bc16bb9b:/# ls /usr/src/app/
+index.js
+root@3380bc16bb9b:/# exit
+exit
+peter@arigna:~/work/full-stack-open-containers/answers$
