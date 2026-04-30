@@ -1,0 +1,78 @@
+peter@arigna:~/work/full-stack-open-containers/todo-app/todo-backend$ docker exec -it mongo_fullstack bash
+root@45b858e5ac34:/# mongosh -u root -p example 
+Current Mongosh Log ID:	69f17633c22c0eb1b844ba88
+Connecting to:		mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.8.2
+Using MongoDB:		8.2.7
+Using Mongosh:		2.8.2
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2026-04-29T02:32:52.967+00:00: Soft rlimits for open file descriptors too low
+   2026-04-29T02:32:52.968+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2026-04-29T02:32:52.968+00:00: For customers running the current memory allocator, we suggest changing the contents of the following sysfsFile
+   2026-04-29T02:32:52.968+00:00: We suggest setting the contents of sysfsFile to 0.
+   2026-04-29T02:32:52.968+00:00: We suggest setting swappiness to 0 or 1, as swapping can cause performance problems.
+------
+
+test> show dbs
+admin         100.00 KiB
+config        100.00 KiB
+local          72.00 KiB
+the_database   68.00 KiB
+test> use the_database
+switched to db the_database
+the_database> show collections
+todos
+the_database> db.todos.find({})
+[
+  {
+    _id: ObjectId('69f16dd3a494e63ad944ba89'),
+    text: 'Write code',
+    done: true
+  },
+  {
+    _id: ObjectId('69f16dd3a494e63ad944ba8a'),
+    text: 'Learn about containers',
+    done: false
+  },
+  {
+    _id: ObjectId('69f16f2a11be11fd8d05ac9d'),
+    text: 'Buy groceries',
+    done: true,
+    __v: 0
+  }
+]
+the_database> 
+(To exit, press Ctrl+C again or Ctrl+D or type .exit)
+the_database> db.todos.insertOne({ text: 'Learn how to add an entry via the cli', done: false })
+{
+  acknowledged: true,
+  insertedId: ObjectId('69f179adc22c0eb1b844ba89')
+}
+the_database> db.todos.find({})
+[
+  {
+    _id: ObjectId('69f16dd3a494e63ad944ba89'),
+    text: 'Write code',
+    done: true
+  },
+  {
+    _id: ObjectId('69f16dd3a494e63ad944ba8a'),
+    text: 'Learn about containers',
+    done: false
+  },
+  {
+    _id: ObjectId('69f16f2a11be11fd8d05ac9d'),
+    text: 'Buy groceries',
+    done: true,
+    __v: 0
+  },
+  {
+    _id: ObjectId('69f179adc22c0eb1b844ba89'),
+    text: 'Learn how to add an entry via the cli',
+    done: false
+  }
+]
+the_database> 

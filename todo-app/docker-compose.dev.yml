@@ -1,0 +1,50 @@
+services:
+  app:
+    image: todo-frontend-dev
+    container_name: todo-frontend-dev
+    build:
+      context: ./todo-frontend/
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./todo-frontend:/usr/src/app # The path can be relative, so ./ is enough to say "the same location as the docker-compose.yml"
+    environment:
+        - VITE_BACKEND_URL=/api/
+
+  nginx:
+    image: nginx:1.29
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "8080:80"
+    container_name: reverse-proxy
+    depends_on:
+      - backend
+      - app
+
+  mongo:
+    container_name: mongo_fullstack
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: the_database
+    volumes:
+      - ./todo-backend/mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+      - ./todo-backend/mongo_data:/data/db
+
+  redis:
+    container_name: redis_fullstack
+    image: redis
+    volumes:
+      - ./todo-backend/redis_data:/data
+      - ./todo-backend/redis/redis.conf:/usr/local/etc/redis/redis.conf
+
+  backend:
+    container_name: todo-backend-dev
+    image: todo-backend-dev
+    build:
+      context: ./todo-backend/
+      dockerfile: dev.Dockerfile
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - MONGO_URL=mongodb://the_username:the_password@mongo:27017/the_database

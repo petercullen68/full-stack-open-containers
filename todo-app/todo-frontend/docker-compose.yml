@@ -1,0 +1,11 @@
+services:
+  app:
+    container_name: todo-frontend
+    image: todo-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - VITE_BACKEND_URL=http://localhost:3000/

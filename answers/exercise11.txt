@@ -1,0 +1,18 @@
+peter@arigna:~/work/full-stack-open-containers/todo-app/todo-backend$ docker exec -it redit_fullstack bash
+Error response from daemon: No such container: redit_fullstack
+peter@arigna:~/work/full-stack-open-containers/todo-app/todo-backend$ docker exec -it redis_fullstack bash
+root@8e839c2c4570:/data# redis-cli
+127.0.0.1:6379> KEYS TODO_COUNTER
+1) "TODO_COUNTER"
+127.0.0.1:6379> GET TODO_COUNTER
+"3"
+127.0.0.1:6379> SET TODO_COUNTER 9001
+OK
+127.0.0.1:6379> GET TODO_COUNTER
+"9001"
+127.0.0.1:6379> DEL TODO_COUNTER
+(integer) 1
+127.0.0.1:6379> GET TODO_COUNTER
+"1"
+127.0.0.1:6379> 
+

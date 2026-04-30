@@ -1,0 +1,78 @@
+GET http://localhost:3000/todos
+
+###
+
+POST http://localhost:3000/todos
+Content-Type: application/json
+
+{
+    "text": "Buy groceries"
+}
+
+###
+
+GET http://localhost:3000/todos/69f16f2a11be11fd8d05ac9d
+
+###
+
+PUT http://localhost:3000/todos/69f16f2a11be11fd8d05ac9d
+Content-Type: application/json
+
+{
+  "text": "Buy groceries",
+  "done": true
+}
+
+###
+
+POST http://localhost:3000/todos
+Content-Type: application/json
+
+{
+"text": "Test Counter"
+}
+
+###
+GET http://localhost:3000/statistics
+
+###
+
+
+GET http://localhost:3000/todos
+
+###
+
+POST http://localhost:3000/todos
+Content-Type: application/json
+
+{
+  "text": "Buy groceries"
+}
+
+###
+
+GET http://localhost:3000/todos/69f16f2a11be11fd8d05ac9d
+
+###
+
+PUT http://localhost:3000/todos/69f16f2a11be11fd8d05ac9d
+Content-Type: application/json
+
+{
+  "text": "Buy groceries",
+  "done": true
+}
+
+###
+
+POST http://localhost:3000/todos
+Content-Type: application/json
+
+{
+  "text": "Test Counter"
+}
+
+###
+GET http://localhost:3000/statistics
+
+###
