@@ -8,6 +8,3 @@ docker-compose.yml
 .idea
 README.md
 test_backend.http
-# mongoDB and redis data directory
-mongo_data
-redis_data
